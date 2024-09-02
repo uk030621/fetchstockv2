@@ -50,7 +50,7 @@ export async function GET(req) {
             const stocks = await db.collection('stocks').find({}).toArray();
 
             const updatedStocks = await Promise.all(stocks.map(async (stock) => {
-                if (!stock.pricePerShare || !stock.totalValue) {
+                if (stock.pricePerShare || stock.totalValue) {
                     const response = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${stock.symbol}`);
                     const data = await response.json();
                     let pricePerShare = data.chart.result[0].meta.regularMarketPrice;
