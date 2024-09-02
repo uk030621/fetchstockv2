@@ -65,8 +65,8 @@ button:hover{
   outline: none; /* Remove the default focus outline */
   background-color: #fff; /* Ensure background color is white */
   color: #333; /* Set the text color */
-  font-size: 13px; /* Adjust font size as needed */
   margin-left: 10px;
+  margin-bottom: 4px;
 }
 
 .inputs:focus {
@@ -75,11 +75,11 @@ button:hover{
 
 
 .edit-button{
-  padding: 5px 5px;
-  margin-bottom: 5px;
+  padding: 5px 12px;
+  margin-bottom: 8px;
 }
 
 .delete-button{
-  margin-left: 10px;
+  
   padding: 5px 5px;
 }
