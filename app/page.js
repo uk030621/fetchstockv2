@@ -130,11 +130,17 @@ export default function Home() {
                     onChange={(e) => setNewStock({ ...newStock, symbol: e.target.value.toUpperCase() })}
                     disabled={isEditing} // Disable symbol input while editing
                 />
-                <input className='inputs'
+                <input
+                    className="inputs"
                     type="number"
                     placeholder="Shares Held"
                     value={newStock.sharesHeld}
                     onChange={(e) => setNewStock({ ...newStock, sharesHeld: Number(e.target.value) })}
+                    onFocus={(e) => {
+                        if (e.target.value === '0') {
+                            setNewStock({ ...newStock, sharesHeld: '' });
+                        }
+                    }}
                 />
                 
             </div>

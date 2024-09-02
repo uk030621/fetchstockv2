@@ -8,12 +8,11 @@ button{
   color: white;
   border-radius: 7px;
   cursor: pointer;
-  transition: 0.5s;
   border: none;
 }
 
 button:hover{
-  background-color: green;
+  background-color: hsl(0, 1%, 21%);
 }
 
 .heading{
@@ -52,6 +51,11 @@ button:hover{
   padding: 10px 12px;
 }
 
+.edit-button{
+  padding: 5px 15px;
+}
+
 .delete-button{
   margin-left: 10px;
+  padding: 5px 5px;
 }
