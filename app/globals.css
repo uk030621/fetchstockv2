@@ -17,7 +17,7 @@ button{
   border-radius: 7px;
   cursor: pointer;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 8px;
   margin-right: 10px;
 }
@@ -65,7 +65,7 @@ button:hover{
   outline: none; /* Remove the default focus outline */
   background-color: #fff; /* Ensure background color is white */
   color: #333; /* Set the text color */
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 13px; /* Adjust font size as needed */
   margin-left: 10px;
 }
 
