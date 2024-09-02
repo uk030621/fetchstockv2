@@ -139,7 +139,7 @@ export default function Home() {
                 
             </div>
 
-             {/* Refresh Button */}
+             {/* Buttons */}
              <div style={{ margin: '20px' }}>
              <button className='inputs' onClick={addOrUpdateStock}>{isEditing ? 'Update Stock' : 'Add Stock'}</button>
                 {isEditing && <button className='inputs' onClick={() => {
