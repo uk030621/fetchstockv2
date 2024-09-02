@@ -22,7 +22,7 @@ export async function GET(req) {
                 return NextResponse.json({ error: `No stock found with symbol: ${symbol}` }, { status: 404 });
             }
 
-            if (!stock.pricePerShare || !stock.totalValue) {
+            if (stock.pricePerShare || stock.totalValue) {
                 const response = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}`);
                 const data = await response.json();
                 let pricePerShare = data.chart.result[0].meta.regularMarketPrice;
