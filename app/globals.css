@@ -1,0 +1,57 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+button{
+  background-color: black;
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.5s;
+  border: none;
+}
+
+button:hover{
+  background-color: green;
+}
+
+.heading{
+  color:black;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.sub-heading{
+  color: grey;
+}
+
+.table-heading{
+  color: black;
+}
+
+.refresh-button{
+  padding: 10px 12px;
+  border-radius: 7px;
+  border: none;
+  font-size: 1.5rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.total-value{
+  color: green;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.inputs{
+  margin-bottom: 15px;
+  margin-left: 10px;
+  padding: 10px 12px;
+}
+
+.delete-button{
+  margin-left: 10px;
+}
