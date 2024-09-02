@@ -136,15 +136,17 @@ export default function Home() {
                     value={newStock.sharesHeld}
                     onChange={(e) => setNewStock({ ...newStock, sharesHeld: Number(e.target.value) })}
                 />
-                <button className='inputs' onClick={addOrUpdateStock}>{isEditing ? 'Update Stock' : 'Add Stock'}</button>
-                {isEditing && <button onClick={() => {
-                    setIsEditing(false);
-                    setNewStock({ symbol: '', sharesHeld: 0 });
-                }}>Cancel</button>}
+                
             </div>
 
              {/* Refresh Button */}
              <div style={{ margin: '20px' }}>
+             <button className='inputs' onClick={addOrUpdateStock}>{isEditing ? 'Update Stock' : 'Add Stock'}</button>
+                {isEditing && <button className='inputs' onClick={() => {
+                    setIsEditing(false);
+                    setNewStock({ symbol: '', sharesHeld: 0 });
+                }}>Cancel</button>}
+
                 <button className='inputs' onClick={fetchData}>Refresh Data</button>
             </div>
 
