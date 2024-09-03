@@ -3,6 +3,17 @@ body{
   color: black;
 }
 
+.hyperlink1{
+  text-decoration: none;
+}
+
+.hyperlink1:hover{
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
+
+
 button{
   background-color: black;
   color: white;
@@ -83,3 +94,4 @@ button:hover{
   
   padding: 5px 5px;
 }
+

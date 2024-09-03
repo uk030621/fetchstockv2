@@ -115,7 +115,10 @@ export default function Home() {
     };
 
     return (
+        
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
+           {/* <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" onClick="window.close()" rel="noopener noreferrer"style={{ color: 'black' }}>Stock symbol lookup</a>*/}
+            <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>Stock symbol lookup</a>
             <h1 className='heading'>FTSE Stock Portfolio</h1>
             <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue}</span></h2>
             
@@ -160,8 +163,8 @@ export default function Home() {
                     <thead className='table-heading'>
                         <tr>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Stock Symbol</th>
-                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Price per share (£)</th>
-                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Shares held</th>
+                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Share price (£)</th>
+                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Share holding (n)</th>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Total value (£)</th>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Actions</th>
                         </tr>
