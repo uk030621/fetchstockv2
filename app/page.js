@@ -139,11 +139,24 @@ export default function Home() {
         if (value < 0) return 'negative';
         return 'neutral';
     };
+
+
+    const handleClose = () => {
+        // Redirect users to the desired page
+        window.location.href = 'https://fetchstockv2.vercel.app/';
+
+        // Close the current window after redirecting
+        window.open('', '_self');
+        window.close();
+    };
+
     
 
 
     return (
         <div style={{ textAlign: 'center', marginTop: '15px' }}>
+
+            <button className='input-stock-button' onClick={handleClose}>Exit</button>
             
             <h1 className='heading'>Personal Stock Portfolio</h1>
             <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
