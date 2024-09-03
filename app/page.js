@@ -12,6 +12,7 @@ export default function Home() {
 
     // Baseline portfolio value (hardcoded)
     const baselinePortfolioValue = 113399;
+    //const baselinePortfolioValue = 120000;
 
     const [deviation, setDeviation] = useState({
         absoluteDeviation: 0,
@@ -24,7 +25,8 @@ export default function Home() {
 
     useEffect(() => {
         // Calculate deviations whenever totalPortfolioValue changes
-        const absoluteDeviation = Math.abs(totalPortfolioValue - baselinePortfolioValue);
+        //const absoluteDeviation = Math.abs(totalPortfolioValue - baselinePortfolioValue);
+        const absoluteDeviation = (totalPortfolioValue - baselinePortfolioValue);
         const percentageChange = ((totalPortfolioValue - baselinePortfolioValue) / baselinePortfolioValue) * 100;
 
         setDeviation({
@@ -132,14 +134,32 @@ export default function Home() {
         setEditingSymbol(stock.symbol);
     };
 
+    const getColorClass = (value) => {
+        if (value > 0) return 'positive';
+        if (value < 0) return 'negative';
+        return 'neutral';
+    };
+    
+
+
     return (
         <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>Stock symbol lookup</a>
             <h1 className='heading'>FTSE Stock Portfolio</h1>
             <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
-            <h4>Baseline Value: £{baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
-            <h4 className='statistics'>Absolute Deviation: £{deviation.absoluteDeviation.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
-            <h4 className='statistics'>Percentage Change: {deviation.percentageChange.toFixed(2)}%</h4>
+            <h4 className='baseline-value'>Baseline Value: £{baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
+            
+            <h4 className="statistics">
+                 £ Deviation:  <span className={getColorClass(deviation.absoluteDeviation)}>
+                    {deviation.absoluteDeviation.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </span>
+            </h4>
+            <h4 className="statistics">
+                % Change:  <span className={getColorClass(deviation.percentageChange)}>
+                    {deviation.percentageChange.toFixed(2)}
+                </span>
+            </h4>
+
 
             {/* Add or Update Stock Form */}
             <div>

@@ -13,7 +13,7 @@ body{
 }
 
 .statistics{
-  color:hsl(0, 0%, 33%)
+  color:grey;
 }
 
 button{
@@ -65,7 +65,7 @@ button:hover{
 }
 
 .total-value{
-  color: green;
+  color:black;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
@@ -95,5 +95,21 @@ button:hover{
 .delete-button{
   
   padding: 5px 5px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.neutral {
+  color: black;
+}
+
+.baseline-value{
+  color: gray;
 }
 
