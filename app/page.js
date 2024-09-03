@@ -144,7 +144,7 @@ export default function Home() {
 
     return (
         <div style={{ textAlign: 'center', marginTop: '15px' }}>
-            <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>Stock symbol lookup</a>
+            
             <h1 className='heading'>Personal Stock Portfolio</h1>
             <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
             <h4 className='baseline-value'>Baseline Value: £{baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
@@ -160,6 +160,7 @@ export default function Home() {
                 </span>
             </h4>
 
+            <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" >Link - <span className='symbol-lookup'>stock symbol lookup</span> </a>
 
             {/* Add or Update Stock Form */}
             <div>

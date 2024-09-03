@@ -6,12 +6,22 @@ body{
 
 .hyperlink1{
   text-decoration: none;
+  margin-right: 190px;
+  font-size: 0.85rem;
+  color: black;
+  font-weight: bold;
 }
 
 .hyperlink1:hover{
   text-decoration: underline;
   font-weight: bolder;
+  color: blue;
 }
+
+.symbol-lookup{
+  color:grey;
+}
+
 
 .statistics{
   color:grey;
@@ -81,6 +91,7 @@ button:hover{
   color: #333; /* Set the text color */
   margin-left: 10px;
   margin-bottom: 4px;
+  margin-top: 10px;
 }
 
 .inputs:focus {
