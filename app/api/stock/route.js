@@ -28,16 +28,16 @@ export async function GET(req) {
                 let pricePerShare = data.chart.result[0].meta.regularMarketPrice;
 
                 // Debugging: Log the fetched pricePerShare, symbol, and stock.sharesHeld
-                console.log(`Fetched pricePerShare for ${symbol}:`, pricePerShare);
-                console.log(`Shares held for ${symbol}:`, stock.sharesHeld);
+                //console.log(`Fetched pricePerShare for ${symbol}:`, pricePerShare);
+                //console.log(`Shares held for ${symbol}:`, stock.sharesHeld);
 
                 if (pricePerShare !== undefined) {
                     stock.pricePerShare = (pricePerShare / 100).toFixed(2);
                     stock.totalValue = (pricePerShare * stock.sharesHeld).toFixed(2);
 
                     // Debugging: Log the calculated pricePerShare and totalValue
-                    console.log(`[A] Calculated pricePerShare for ${symbol}:`, stock.pricePerShare);
-                    console.log(`{A] Calculated totalValue for ${symbol}:`, stock.totalValue);
+                    //console.log(`[A] Calculated pricePerShare for ${symbol}:`, stock.pricePerShare);
+                    //console.log(`{A] Calculated totalValue for ${symbol}:`, stock.totalValue);
 
                     await db.collection('stocks').updateOne({ symbol }, { $set: { pricePerShare: stock.pricePerShare, totalValue: stock.totalValue } });
                 } else {
@@ -56,16 +56,16 @@ export async function GET(req) {
                     let pricePerShare = data.chart.result[0].meta.regularMarketPrice;
 
                     // Debugging: Log the fetched pricePerShare and stock.sharesHeld
-                    console.log(`[B] Fetched pricePerShare for ${stock.symbol}:`, pricePerShare);
-                    console.log(`[B] Shares held for ${stock.symbol}:`, stock.sharesHeld);
+                    //console.log(`[B] Fetched pricePerShare for ${stock.symbol}:`, pricePerShare);
+                    //console.log(`[B] Shares held for ${stock.symbol}:`, stock.sharesHeld);
 
                     if (pricePerShare !== undefined) {
                         stock.pricePerShare = (pricePerShare / 100).toFixed(2);
                         stock.totalValue = (pricePerShare * stock.sharesHeld).toFixed(2);
 
                         // Debugging: Log the calculated pricePerShare and totalValue
-                        console.log(`[C] Calculated pricePerShare for ${stock.symbol}:`, stock.pricePerShare);
-                        console.log(`[C] Calculated totalValue for ${stock.symbol}:`, stock.totalValue);
+                        //console.log(`[C] Calculated pricePerShare for ${stock.symbol}:`, stock.pricePerShare);
+                        //console.log(`[C] Calculated totalValue for ${stock.symbol}:`, stock.totalValue);
 
                         await db.collection('stocks').updateOne({ symbol: stock.symbol }, { $set: { pricePerShare: stock.pricePerShare, totalValue: stock.totalValue } });
                     }
@@ -96,15 +96,15 @@ export async function POST(req) {
         }
 
         // Debugging: Log the fetched pricePerShare and sharesHeld
-        console.log(`[D] Fetched pricePerShare for ${newStock.symbol}:`, pricePerShare);
-        console.log(`{D] Shares held for ${newStock.symbol}:`, newStock.sharesHeld);
+        //console.log(`[D] Fetched pricePerShare for ${newStock.symbol}:`, pricePerShare);
+        //console.log(`{D] Shares held for ${newStock.symbol}:`, newStock.sharesHeld);
 
         newStock.pricePerShare = (pricePerShare / 100).toFixed(2);
         newStock.totalValue = (pricePerShare * newStock.sharesHeld).toFixed(2);
 
         // Debugging: Log the calculated pricePerShare and totalValue
-        console.log(`[E] Calculated pricePerShare for ${newStock.symbol}:`, newStock.pricePerShare);
-        console.log(`[E] Calculated totalValue for ${newStock.symbol}:`, newStock.totalValue);
+        //console.log(`[E] Calculated pricePerShare for ${newStock.symbol}:`, newStock.pricePerShare);
+        //console.log(`[E] Calculated totalValue for ${newStock.symbol}:`, newStock.totalValue);
 
         const result = await db.collection('stocks').insertOne(newStock);
         const addedStock = { _id: result.insertedId, ...newStock };

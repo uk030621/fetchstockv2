@@ -12,7 +12,9 @@ body{
   font-weight: bolder;
 }
 
-
+.statistics{
+  color:hsl(0, 0%, 33%)
+}
 
 button{
   background-color: black;

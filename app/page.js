@@ -8,26 +8,45 @@ export default function Home() {
     const [newStock, setNewStock] = useState({ symbol: '', sharesHeld: 0 });
     const [isEditing, setIsEditing] = useState(false);
     const [editingSymbol, setEditingSymbol] = useState('');
-    const [isLoading, setIsLoading] = useState(true); // Loading state
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Baseline portfolio value (hardcoded)
+    const baselinePortfolioValue = 113399;
+
+    const [deviation, setDeviation] = useState({
+        absoluteDeviation: 0,
+        percentageChange: 0,
+    });
 
     useEffect(() => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        // Calculate deviations whenever totalPortfolioValue changes
+        const absoluteDeviation = Math.abs(totalPortfolioValue - baselinePortfolioValue);
+        const percentageChange = ((totalPortfolioValue - baselinePortfolioValue) / baselinePortfolioValue) * 100;
+
+        setDeviation({
+            absoluteDeviation,
+            percentageChange,
+        });
+    }, [totalPortfolioValue]); // Recalculate only when totalPortfolioValue changes
+
     const fetchData = async () => {
-        setIsLoading(true); // Show loading message
+        setIsLoading(true);
         try {
             const response = await fetch('/api/stock');
             const data = await response.json();
-    
+
             const updatedStocks = await Promise.all(
                 data.map(async (stock) => {
                     const priceResponse = await fetch(`/api/stock?symbol=${stock.symbol}`);
                     const priceData = await priceResponse.json();
-    
+
                     const pricePerShare = parseFloat(priceData.pricePerShare);
                     const totalValue = pricePerShare * stock.sharesHeld;
-    
+
                     return {
                         ...stock,
                         pricePerShare: pricePerShare.toLocaleString('en-GB', {
@@ -43,27 +62,26 @@ export default function Home() {
                     };
                 })
             );
-    
+
             // Sort the updatedStocks array by totalValue from high to low
             updatedStocks.sort((a, b) => {
                 const totalValueA = parseFloat(a.totalValue.replace(/,/g, ''));
                 const totalValueB = parseFloat(b.totalValue.replace(/,/g, ''));
-                return totalValueB - totalValueA; // Sort high to low
+                return totalValueB - totalValueA;
             });
-    
+
             setStocks(updatedStocks);
             calculateTotalPortfolioValue(updatedStocks);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
-            setIsLoading(false); // Hide loading message
+            setIsLoading(false);
         }
     };
-    
 
     const calculateTotalPortfolioValue = (stocks) => {
         const totalValue = stocks.reduce((acc, stock) => acc + parseFloat(stock.totalValue.replace(/,/g, '')), 0);
-        setTotalPortfolioValue(totalValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 }));
+        setTotalPortfolioValue(totalValue);
     };
 
     const addOrUpdateStock = async () => {
@@ -115,13 +133,14 @@ export default function Home() {
     };
 
     return (
-        
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
-           {/* <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" onClick="window.close()" rel="noopener noreferrer"style={{ color: 'black' }}>Stock symbol lookup</a>*/}
             <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>Stock symbol lookup</a>
             <h1 className='heading'>FTSE Stock Portfolio</h1>
-            <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue}</span></h2>
-            
+            <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
+            <h4>Baseline Value: £{baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
+            <h4 className='statistics'>Absolute Deviation: £{deviation.absoluteDeviation.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
+            <h4 className='statistics'>Percentage Change: {deviation.percentageChange.toFixed(2)}%</h4>
+
             {/* Add or Update Stock Form */}
             <div>
                 <input className='inputs'
@@ -129,7 +148,7 @@ export default function Home() {
                     placeholder="Stock Symbol"
                     value={newStock.symbol}
                     onChange={(e) => setNewStock({ ...newStock, symbol: e.target.value.toUpperCase() })}
-                    disabled={isEditing} // Disable symbol input while editing
+                    disabled={isEditing}
                 />
                 <input
                     className="inputs"
@@ -157,7 +176,7 @@ export default function Home() {
 
             {/* Stock Table */}
             {isLoading ? (
-                <p>Loading...</p> // Show loading message while fetching data
+                <p>Loading...</p>
             ) : (
                 <table style={{ margin: '0 auto', borderCollapse: 'collapse', width: '80%' }}>
                     <thead className='table-heading'>
