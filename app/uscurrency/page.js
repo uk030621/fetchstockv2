@@ -163,7 +163,7 @@ export default function Home() {
             <Link className='ukstock-link' href="/">UK Stocks</Link>
             
             <h1 className='heading'>
-                Personal US<span>
+                US<span>
                 <Image className='uk-pic'
                     src="/USFLAG.jpg" 
                     alt="Portfolio Image" 
