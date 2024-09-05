@@ -9,6 +9,25 @@ body{
   margin-left: 10px;
 }
 
+.currency-input{
+  padding: 7px 8px;
+  width: 120px;
+  border-radius: 5px;
+  border: 1px solid #ccc; /* Set a consistent border color */
+}
+
+.selector{
+  padding: 6px 8px;
+  margin-left: 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc; /* Set a consistent border color */
+}
+
+.convert-button{
+  padding: 6px 8px;
+  margin-left: 4px;
+}
+
 .currency-link:hover{
   color:black;
   font-weight: bolder;

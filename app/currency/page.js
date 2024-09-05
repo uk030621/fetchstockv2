@@ -26,11 +26,11 @@ export default function CurrencyConverter() {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{ textAlign: 'center', marginTop: '15px' }}>
       <Link className="home-link" href = "/">Home</Link>
       <h1 className='currency-converter-heading'>Currency Converter</h1>
       <form onSubmit={handleConvert}>
-        <input className='input'
+        <input className='currency-input'
           type="number" 
           value={amount} 
           onChange={(e) => setAmount(e.target.value)} 
@@ -55,7 +55,7 @@ export default function CurrencyConverter() {
           <option value="GBP">GBP</option>
           {/* Add more currencies if needed */}
         </select>
-        <button className='selector' type="submit">Convert</button>
+        <button className='convert-button' type="submit">Convert</button>
       </form>
 
       {result && (

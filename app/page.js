@@ -141,14 +141,15 @@ export default function Home() {
     };
 
 
-    const handleClose = () => {
-        // Redirect users to the desired page
-        window.location.href = 'https://fetchstockv2.vercel.app/';
+    //const handleClose = () => {
+    // Open the external site in a new tab
+    //window.open('https://fetch2.vercel.app/', '_blank');
+    
+    // Close the current window
+    //window.open('', '_self');
+    //window.close();
+//};
 
-        // Close the current window after redirecting
-        window.open('', '_self');
-        window.close();
-    };
 
     
 
@@ -158,7 +159,7 @@ export default function Home() {
 
             
 
-            <button className='input-stock-button' onClick={handleClose}>Exit</button>
+            {/*<button className='input-stock-button' onClick={handleClose}>Exit</button>*/}
 
             <Link className='currency-link' href="/currency">Currency Converter</Link>
             
