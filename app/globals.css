@@ -166,3 +166,27 @@ button:hover{
   color: gray;
 }
 
+.usstock-link{
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.usstock-link:hover{
+  color: black;
+  font-weight: bolder;
+}
+
+.ukstock-link{
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.ukstock-link:hover{
+  color: black;
+  font-weight: bolder;
+}
+
+.uk-pic{
+  border-radius: 7px;
+}
+

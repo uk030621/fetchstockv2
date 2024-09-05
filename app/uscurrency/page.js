@@ -12,7 +12,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
 
     // Baseline portfolio value (hardcoded)
-    const baselinePortfolioValue = 113399;
+    const baselinePortfolioValue = 20000;
     //const baselinePortfolioValue = 120000;
 
     const [deviation, setDeviation] = useState({
@@ -39,12 +39,12 @@ export default function Home() {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('/api/stock');
+            const response = await fetch('/api/usstock');
             const data = await response.json();
 
             const updatedStocks = await Promise.all(
                 data.map(async (stock) => {
-                    const priceResponse = await fetch(`/api/stock?symbol=${stock.symbol}`);
+                    const priceResponse = await fetch(`/api/usstock?symbol=${stock.symbol}`);
                     const priceData = await priceResponse.json();
 
                     const pricePerShare = parseFloat(priceData.pricePerShare);
@@ -90,7 +90,7 @@ export default function Home() {
     const addOrUpdateStock = async () => {
         try {
             const method = isEditing ? 'PUT' : 'POST';
-            const endpoint = isEditing ? `/api/stock?symbol=${editingSymbol}` : '/api/stock';
+            const endpoint = isEditing ? `/api/usstock?symbol=${editingSymbol}` : '/api/usstock';
 
             const response = await fetch(endpoint, {
                 method: method,
@@ -104,16 +104,16 @@ export default function Home() {
                 setEditingSymbol('');
                 fetchData();
             } else {
-                console.error(`Failed to ${isEditing ? 'update' : 'add'} stock`);
+                console.error(`Failed to ${isEditing ? 'update' : 'add'} usstock`);
             }
         } catch (error) {
-            console.error(`Error ${isEditing ? 'updating' : 'adding'} stock:`, error);
+            console.error(`Error ${isEditing ? 'updating' : 'adding'} usstock:`, error);
         }
     };
 
     const deleteStock = async (symbol) => {
         try {
-            const response = await fetch('/api/stock', {
+            const response = await fetch('/api/usstock', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ symbol })
@@ -122,10 +122,10 @@ export default function Home() {
             if (response.ok) {
                 fetchData();
             } else {
-                console.error(`Failed to delete stock with symbol: ${symbol}`);
+                console.error(`Failed to delete usstock with symbol: ${symbol}`);
             }
         } catch (error) {
-            console.error('Error deleting stock:', error);
+            console.error('Error deleting usstock:', error);
         }
     };
 
@@ -151,7 +151,6 @@ export default function Home() {
     //window.close();
 //};
 
-
     return (
         <div style={{ textAlign: 'center', marginTop: '15px' }}>
 
@@ -161,12 +160,12 @@ export default function Home() {
 
             <Link className='currency-link' href="/currency">Currency Converter</Link>
 
-            <Link className='usstock-link' href="/uscurrency">US Stocks</Link>
+            <Link className='ukstock-link' href="/">UK Stocks</Link>
             
             <h1 className='heading'>
-                Personal UK<span>
+                Personal US<span>
                 <Image className='uk-pic'
-                    src="/UKFlag.jpg" 
+                    src="/USFLAG.jpg" 
                     alt="Portfolio Image" 
                     width={50}  // Adjust the width
                     height={50} // Adjust the height
@@ -174,12 +173,11 @@ export default function Home() {
                 />
                 </span> Stock Portfolio  
             </h1>
-
-            <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
-            <h4 className='baseline-value'>Baseline Value: £{baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
+            <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>${totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
+            <h4 className='baseline-value'>Baseline Value: ${baselinePortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</h4>
             
             <h4 className="statistics">
-                 £ Deviation:  <span className={getColorClass(deviation.absoluteDeviation)}>
+                 $ Deviation:  <span className={getColorClass(deviation.absoluteDeviation)}>
                     {deviation.absoluteDeviation.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </span>
             </h4>
@@ -232,9 +230,9 @@ export default function Home() {
                     <thead className='table-heading'>
                         <tr>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Stock Symbol</th>
-                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Share price (£)</th>
+                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Share price ($)</th>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Share holding (n)</th>
-                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Total value (£)</th>
+                            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Total value ($)</th>
                             <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Actions</th>
                         </tr>
                     </thead>
