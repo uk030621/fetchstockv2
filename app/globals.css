@@ -4,6 +4,28 @@ body{
   background-color: azure ;
 }
 
+.currency-link{
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.currency-link:hover{
+  color:black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.home-link{
+  text-decoration: none;
+}
+
+.home-link:hover{
+  color:black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+
 .hyperlink1{
   text-decoration: none;
   margin-right: 190px;

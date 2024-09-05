@@ -1,5 +1,5 @@
 "use client";
-
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -156,7 +156,11 @@ export default function Home() {
     return (
         <div style={{ textAlign: 'center', marginTop: '15px' }}>
 
+            
+
             <button className='input-stock-button' onClick={handleClose}>Exit</button>
+
+            <Link className='currency-link' href="/currency">Currency Converter</Link>
             
             <h1 className='heading'>Personal Stock Portfolio</h1>
             <h2 className="sub-heading" style={{ marginTop: '20px' }}>Total Value: <span className='total-value'>£{totalPortfolioValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span></h2>
