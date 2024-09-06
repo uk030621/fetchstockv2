@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-
+import Image from 'next/image';
 
 export default function StockSearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,12 +41,8 @@ export default function StockSearchPage() {
   };
 
 
-
-
-
   return (
-    <div style={{ padding: '20px' }}>
-      <Link className='stock-symbol-search' href = "/">Home</Link>
+    <div style={{ padding: '5px' }}>
       <h1>Stock Symbol Lookup</h1>
       <input
         type="text"
@@ -81,7 +77,8 @@ export default function StockSearchPage() {
       </div>
 
       <div>
-      <input
+      <input 
+        className='selected-symbol'
         ref={inputRef}
         type="text"
         defaultValue={selectedStock}
@@ -93,8 +90,29 @@ export default function StockSearchPage() {
       >Copy</button>
       {copySuccess && <span style={{ marginLeft: '10px' }}>{copySuccess}</span>}
     </div>
-
-
+        <div style={{display:'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
+            <p className='return-to-stock'>Return to Stock: </p>
+            <Link className='stock-symbol-search' href="/">
+            <span>
+            <Image className='uk-pic'
+                    src="/UKFlag.jpg" 
+                    alt="Portfolio Image" 
+                    width={50}  // Adjust the width
+                    height={50} // Adjust the height
+                    style={{ marginLeft: '5px' }}  // Add margin for spacing
+                />
+            </span>UK</Link>
+            <Link className='stock-symbol-search' href="/uscurrency">
+            <span>
+            <Image className='uk-pic'
+                    src="/USFLAG.jpg" 
+                    alt="Portfolio Image" 
+                    width={50}  // Adjust the width
+                    height={50} // Adjust the height
+                    style={{ marginLeft: '5px' }}  // Add margin for spacing
+                />
+            </span>US</Link>
+        </div>
     </div>
   );
 }

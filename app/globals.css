@@ -203,3 +203,11 @@ button:hover{
   border-radius: 7px;
 }
 
+.selected-symbol{
+  margin-bottom: 10px;
+}
+
+.return-to-stock{
+  margin-right: 10px;
+  font-size: small;
+}
