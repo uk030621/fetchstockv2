@@ -157,10 +157,6 @@ export default function Home() {
             
 
             {/*<button className='input-stock-button' onClick={handleClose}>Exit</button>*/}
-
-            <Link className='currency-link' href="/currency">Currency Converter</Link>
-
-            <Link className='ukstock-link' href="/">UK Stocks</Link>
             
             <h1 className='heading'>
                 US<span>
@@ -187,8 +183,10 @@ export default function Home() {
                 </span>
             </h4>
 
-            <a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" >Link - <span className='symbol-lookup'>symbol lookup</span> </a>
-
+            {/*<a className='hyperlink1' href="https://uk.finance.yahoo.com/lookup" target="_blank" rel="noopener noreferrer" >Link - <span className='symbol-lookup'>symbol lookup</span> </a>*/}
+            <Link className='stock-symbol-search' href = "/symbolsearch">Symbol Search</Link>
+            <Link className='currency-link' href="/currency">Currency Converter</Link>
+            <Link className='usstock-link' href="/">UK Stocks</Link>
             {/* Add or Update Stock Form */}
             <div>
                 <input className='inputs'

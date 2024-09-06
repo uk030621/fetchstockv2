@@ -6,7 +6,14 @@ body{
 
 .currency-link{
   text-decoration: none;
-  margin-left: 10px;
+  font-size: small;
+  margin-right: 20px;
+}
+
+.currency-link:hover{
+  color:black;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .currency-input{
@@ -28,11 +35,6 @@ body{
   margin-left: 4px;
 }
 
-.currency-link:hover{
-  color:black;
-  font-weight: bolder;
-  cursor: pointer;
-}
 
 .home-link{
   text-decoration: none;
@@ -167,8 +169,8 @@ button:hover{
 }
 
 .usstock-link{
-  margin-left: 10px;
   text-decoration: none;
+  font-size: small;
 }
 
 .usstock-link:hover{
@@ -182,6 +184,17 @@ button:hover{
 }
 
 .ukstock-link:hover{
+  color: black;
+  font-weight: bolder;
+}
+
+.stock-symbol-search{
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: small;
+}
+
+.stock-symbol-search:hover{
   color: black;
   font-weight: bolder;
 }
